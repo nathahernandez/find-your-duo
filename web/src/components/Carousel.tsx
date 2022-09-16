@@ -1,5 +1,6 @@
 import Card from './Card';
 import api from '../services/api';
+
 import { useEffect, useState } from 'react';
 
 interface GamesProps {
