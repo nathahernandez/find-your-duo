@@ -1,14 +1,35 @@
 import Card from './Card';
+import api from '../services/api';
+import { useEffect, useState } from 'react';
+
+interface GamesProps {
+    bannerURL: string
+    id: string
+    title: string
+    _count: {
+        ads: number
+    }
+}
 
 export default function Carousel () {
+    
+    const [gamesList, setGamesList] = useState<GamesProps[]>();
+
+
+    useEffect(() => {
+        api.get('/games').then( response => {
+            const json = response.data;
+            setGamesList(json);
+        })
+    }, []);
+
     return (
         <div className='grid grid-cols-6 gap-6 mt-16 '>
-          <Card bannerURL='./src/assets/g1.png' title='League of Legends' adsCount={4} />
-          <Card bannerURL='./src/assets/g2.png' title='League of Legends' adsCount={4} />
-          <Card bannerURL='./src/assets/g3.png' title='League of Legends' adsCount={4} />
-          <Card bannerURL='./src/assets/g4.png' title='League of Legends' adsCount={4} />
-          <Card bannerURL='./src/assets/g5.png' title='League of Legends' adsCount={4} />
-          <Card bannerURL='./src/assets/g6.png' title='League of Legends' adsCount={4} />
+          {
+          gamesList?.map((game) => {
+            return <Card key={game.id} bannerURL={game.bannerURL} title={game.title} adsCount={game._count.ads} />
+          })
+          }
         </div>
     )
 }
