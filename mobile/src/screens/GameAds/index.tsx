@@ -10,7 +10,10 @@ import { THEME } from '../../theme'
 import { Heading } from '../../components/Heading'
 import { AdCards } from '../../components/AdCards'
 import { api } from '../../services/api'
+import { Match } from '../../components/Match'
+
 import { useState, useEffect } from 'react';
+import axios from 'axios'
 
 export interface AdsProps {
     createdAt: string
@@ -30,18 +33,22 @@ export function GameAds () {
     const navigation = useNavigation();
 
     const [ Ads, setAds ] = useState<AdsProps[]>()
+    const [ discordSelected, setDiscordSelected ] = useState('') 
 
     function handleGoBack () {
         navigation.goBack()
     }
 
+    const onClose = () => setDiscordSelected('')
+
+    const getDiscordUser = async (AdID : string) => {
+        api.get(`/ads/${AdID}/discord`).then(response => setDiscordSelected(response.data.discordUser)) 
+    }
+    
     useEffect(()=>{
         api.get(`/games/${params.id}/ads`)
-        .then(response => {
-            setAds(response.data)
-        })
+        .then( response => setAds(response.data) )
     }, [])
-    
 
     return (
         <BG>
@@ -78,10 +85,15 @@ export function GameAds () {
                     horizontal
                     data={Ads}
                     keyExtractor={item => item.id}
-                    renderItem={ ({ item }) => <AdCards onConect={() => {}} data={item} /> }
+                    renderItem={ ({ item }) => <AdCards onConnect={() => getDiscordUser(item.id)} data={item} /> }
                     contentContainerStyle={styles.contentList}
                     showsHorizontalScrollIndicator={false}
                     style={styles.containerList}
+                />
+                <Match 
+                    onClose={onClose}
+                    visible={discordSelected.length > 0 }
+                    discord={discordSelected}
                 />
             </SafeAreaView>
         </BG>

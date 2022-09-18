@@ -7,10 +7,10 @@ import { SimpleLineIcons } from '@expo/vector-icons';
 
 interface Props {
     data: AdsProps
-    onConect: () => void
+    onConnect: () => void
 }
 
-export function AdCards ({ data, onConect } : Props) {
+export function AdCards ({ data, onConnect } : Props) {
 
     return (
         <View style={styles.container}>
@@ -36,7 +36,7 @@ export function AdCards ({ data, onConect } : Props) {
             />
             <TouchableOpacity
                 style={styles.button}
-                onPress={onConect}
+                onPress={onConnect}
             >
                 <SimpleLineIcons name="game-controller" size={20} color='#ffffff' />
                 <Text style={styles.text}>
