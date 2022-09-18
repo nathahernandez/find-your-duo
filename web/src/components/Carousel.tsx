@@ -3,7 +3,7 @@ import api from '../services/api';
 
 import { useEffect, useState } from 'react';
 
-interface GamesProps {
+export interface GamesProps {
     bannerURL: string
     id: string
     title: string
@@ -14,7 +14,7 @@ interface GamesProps {
 
 export default function Carousel () {
     
-    const [gamesList, setGamesList] = useState<GamesProps[]>();
+    const [gamesList, setGamesList] = useState<GamesProps[]>([]);
 
 
     useEffect(() => {
