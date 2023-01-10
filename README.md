@@ -1,8 +1,17 @@
-# 🚀 NLW eSports Ignite - Bootcamp by Rocketseat 
-Bootcamp NLW eSports na Trilha Ignite da Rocketseat, web e mobile com React e React-native.
+# 🚀 NLW eSports Ignite by Rocketseat
+NLW eSports na Trilha Ignite da Rocketseat, esse é o repositório da versão web da aplicação.
 
-Em andamento... ⌛ 3/6
+#### Techs
+React,
+Vitejs,
+Typescript,
+Tailwindcss,
+Eslint,
+Radix-ui,
+Axios,
+Phosphor React e
+Postcss
+
+Concluído. ✅ 6/6
 
 #NeverStopLearning - Obrigado Rocketseat 💜
-
-<a href='https://www.figma.com/file/s0ojo68kWJDDKMbHzDHIUE/NLW-eSports-(Community)?node-id=0%3A1'>Link para o Projeto no Figma</a>
